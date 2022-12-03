@@ -267,7 +267,95 @@ The ML topics that were covered in this project are:
     \item Attention Mechanism in Deep Learning
 \end{itemize}
 
-\section{\textcolor{red}{LITERATURE SURVEY}}
+\newpage
+
+\section{LITERATURE SURVEY}
+
+Over the recent years, artificial neural networks (ANNs) have 
+come to prominence. Applications and research areas for ANNs 
+are numerous and diverse. Their primary objective is the quick 
+filtering, classification, and processing of (mainly) non-linear 
+data, such as speech recognition, picture processing, and language 
+translation. In addition, researchers were able to “train” ANNs 
+to play games or produce artwork in the manner of well-known artists.
+
+On the MysteryTwister C3\cite{Welcomet7:online} (MTC3) website 
+in late 2019, Stamp posted a challenge titled “Cipher ID”. The 
+task is to identify the type of cipher used to encrypt each 
+of the 500 ciphertexts in the collection, which were encrypted 
+using 5 distinct ciphers and random keys. The individual ciphertexts 
+were then mixed up after each cypher type had been employed 
+exactly 100 times. All prior solvers completed the task by deciphering 
+the ciphertexts using solvers for the 5 various cipher types, 
+despite the author's goal of encouraging others to begin research 
+in the fields of machine learning and cypher type detection. 
+The participants were able to determine the type of encryption 
+algorithm that was employed after learning the plaintext of each cipher.
+
+We worked on the cipher text detection problem with the help of ANN 
+and in this process TensorFlow and Pytorch were used. TensorFlow 
+is a free and open-source data flow and math library developed 
+by Google written in Python, C++, and CUDA, and was publicly
+released in 2015. PyTorch is an open source machine learning (ML) 
+framework based on the Python programming language and the Torch 
+library which was initially released in the year 2016.
+
+In this section, we present different papers and articles, which 
+we studied before starting with our work. The usage of ANNs 
+in the paper ranges between the emulation of ciphers, the detection 
+of the cipher type, and the recovery of cryptographic keys.
+
+\begin{enumerate}
+    \item Attention Is All You Need\cite{https://doi.org/10.48550/arxiv.1706.03762} 
+    (NIPS 2017), here a new simple network architecture, the 
+    Transformer, based solely on attention mechanisms, dispensing 
+    with recurrence and convolutions entirely. Experiments on 
+    two machine translation tasks show these models to be superior 
+    in quality while being more parallelizable and requiring 
+    significantly less time to train.
+    \item Detecting the Type of Ciphers Using Artificial Neural 
+    Networks\cite{inproceedings} (ICHC, 2020), where a first 
+    version of an artificial neural network was developed to 
+    differentiate between five classical ciphers: simple 
+    monoalphabetic substitution, Vigenere, Playfair, Hill, and
+    transposition.
+    \item In the Language Models are Unsupervised Multitask 
+    Learners\cite{radford2019language} paper, demonstration 
+    of language models that can perform down-stream tasks in 
+    a zero-shot setting – without any parameter or architecture 
+    modification was done.
+    \item Language Models are Few-Shot Learners\cite{brown2020language}, 
+    broader societal impacts of this finding and of GPT-3 in 
+    general are discussed in this paper
+    \item Detection of Classical Cipher Types with Feature-Learning 
+    Approaches\cite{leierzopf2021detection}, where the applicability 
+    of the two feature-learning algorithms, long short-term 
+    memory (LSTM) and Transformer, have been explored to overcome 
+    the dependency on domain knowledge
+    \item A systematic evaluation of large language models of 
+    code\cite{xu2022systematic} (ICLR 2022), where a new model 
+    PolyCoder was released, with 2.7B parameters based on the GPT-2
+    architecture, that was trained on 249GB of code across 12 
+    programming languages on a single machine.
+    \item GPT-NeoX-20B:\@ An Open-Source Autoregressive Language 
+    Model\cite{black2022gpt}, where GPT-NeoX-20B was introduced 
+    which was a 20 billion parameter autoregressive language model 
+    trained on the Pile.
+    \item Fine-tune a pretrained model\cite{Finetune56:online}, 
+    a tutorial where a step by step process to fine-tune a
+    pretrained model with a deep learning framework is discussed.
+    \item Fine-Tuning Transformers for NLP\cite{FineTuni38:online}, 
+    another tutorial on how to fine-tune two different transformer 
+    models, BERT and DistilBERT:\@ Sentiment Analysis, and Duplicate
+    Question Detection is covered.
+    \item How to generate text: using different decoding methods 
+    for language generation with
+    Transformers~\cite{Howtogen29:online}, a blog post which 
+    gives a brief overview of different decoding
+    strategies and shows how can they be implemented with very 
+    little effort using the popular transformers library
+\end{enumerate}
+
 
 \newpage
 
@@ -490,13 +578,13 @@ having a batch size of 32 and was run for 5 epochs.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{Pictures/Tranformer Model/transformer_train_params.jpg}
-    \caption{Training Parameters for the GPT2 Fine Tuning}\label{fig7:gpt2_params}
+    \caption{Training Parameters for the GPT-Neo Fine Tuning}\label{fig7:gpt-neo_params}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\linewidth]{Pictures/Tranformer Model/transformer_train_res.jpg}
-    \caption{Training and Validation Loss obtained every 500 steps}\label{fig8:gpt2_train}
+    \caption{Training and Validation Loss obtained every 500 steps}\label{fig8:gpt-neo_train}
 \end{figure}
 
 After fine-tuning, we tested the model on our test dataset containing 
@@ -505,7 +593,7 @@ After fine-tuning, we tested the model on our test dataset containing
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{Pictures/Tranformer Model/transformer_test_res.jpg}
-    \caption{Testing Accuracy for the Fine-Tuned GPT2 Model}\label{fig8:gpt2_test_res}
+    \caption{Testing Accuracy for the Fine-Tuned GPT-Neo Model}\label{fig8:gpt-neo_test_res}
 \end{figure}
 
 \newpage
@@ -533,11 +621,14 @@ Apart from this, we would like to explore feature detection
 to create a model and compare this approach with the transformer-based 
 model.
 
-
 Once we are satisfied with the model accuracy on 5 classes of 
 ciphers, we would like to extend the model to detect more classes 
 such as AES, DES, RSA, etc.
 
 \section{\textcolor{red}{CONCLUSION}}
+\newpage
+\renewcommand{\refname}{REFERENCES}
+\bibliographystyle{ieeetr}
+\bibliography{mp}
 
 \end{document}

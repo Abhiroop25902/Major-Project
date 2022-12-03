@@ -61,8 +61,6 @@
 
 \usepackage{hyperref}
 
-\usepackage{indentfirst} % for indenting first paragraph aftera section tag
-
 \begin{document}
 \begin{titlepage}
     \begin{tikzpicture}[overlay,remember picture]
@@ -206,7 +204,7 @@
 \newpage
 \setcounter{tocdepth}{2} % + subsections
 \tableofcontents
-\lfoot{IIEST, Shibpur}
+\lfoot{Dept.\ of Computer Science \& Technology}
 \newpage
 
 \pagenumbering{arabic}
@@ -273,148 +271,273 @@ The ML topics that were covered in this project are:
 
 \newpage
 
-\section{THE PROJECT}
-\subsection{Software Used}
-The softwares used to build this \textit{checker} are:
+\section{PROPOSED WORK}
+\subsection{Dataset Generation}
+The dataset has been generated for five types of ciphers:
+\begin{itemize}
+    \item Caesar
+    \item Affine
+    \item Vigenère
+    \item Substitution
+    \item Rail Fence
+\end{itemize}
 
-\subsubsection{An Integrated Development Environment (IDE)}
-An integrated development environment (IDE) is a software application that
-provides comprehensive facilities to computer programmers for software
-development. An IDE normally consists of at least a source code editor, build
-automation tools and a debugger. Some IDEs contain the necessary compiler,
-interpreter, or both; others, do not.
+The plaintext used for encryption was text from Shakespeare’s Hamlet and Macbeth.
 
-We used PyCharm as our IDE, as it was easy to set up and code
+For Data Preporcessing, we converted text to lowercase and removed all whitespaces and punctuation.
 
-\textcolor{green}{wikipedia reference}PyCharm is an integrated development environment (IDE) used in computer programming, specifically for the Python language. It is developed by the Czech company JetBrains. It provides code analysis, a graphical debugger, an integrated unit tester, integration with version control systems (VCSes), and supports web development with Django as well as data science with Anaconda.
+Each of the classes has 6815 data points, resulting in a total 
+of 34075 data points and each data point consists of the ciphertext 
+(input) and the encryption algorithm (output).
 
-\subsubsection{Python}
-Python is an interpreted, high-level and general-purpose programming language.
-Python's design philosophy emphasizes code readability with its notable use of
-significant whitespace. Its language constructs and object-oriented approach aim
-to help programmers write clear, logical code for small and large-scale projects.
+We wrote a Python script for each of the ciphers to encrypt 
+the data into a Pandas DataFrame. The combined DataFrame is 
+exported as a CSV file for the resulting dataset.
 
-\paragraph{Why did we choose Python?}
+\subsection{Model using CNN}
+
+The main intuition behind this method is that CNN uses its kernel 
+as a “local receptive field”, which means that a CNN kernel 
+(small in size as we are dealing with stream cipher and not 
+block cipher) can look its nearby characters and will find some 
+pattern in the ciphertext
+
+So, we first converted a every ciphertexts into their respective 
+list of tokens using a  TextVectorizer, then we converted that 
+list into an image as follows:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Pictures/CNN Model/string_conversion.png}
+    \caption{Converting text to “image”}\label{fig1:convert_text_img}
+\end{figure}
+
+Note that this conversion depends on the length of string used, 
+i.e.\ for a string for length $n$, we will generate a $n \times n$ 
+“image”. After we generate all variable sized images, we resize
+them to $60 \times 60$ using Bilinear Interpolation.
+
+Now we can see that a kernel (say $3 \times 3$ with stride one) 
+can observe its previous as well as its next character and 
+can use that information to find pattern in the ciphertext.
+
+We use a CNN to extract features from the “image” then we feed 
+those features to a Dense Network to classify between the ciphertext types.
+
+\newpage
+
+\subsection{Model using Transformer}
+
+The main intuition behind this method is to compute the relative 
+importance of a ciphertext character with respect to the other 
+ciphertext characters. A transformer model works on the encoder 
+decoder architecture converting ciphertext characters to tokens 
+and then computing the relative importance of a token to other tokens.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/transformer_arch.jpg}
+    \caption{Transformer architecture}\label{fig2:transformer_arch}
+\end{figure}
+
+A transformer is an advanced sequence to sequence model that 
+is used to predict the next token depending upon all the previous 
+tokens. From our dataset containing encrypted text and the algorithm 
+used for encryption, we create a text prompt from each row for 
+example: 
+\begin{flushleft}
+    Cipher text: ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy\\
+    Algorithm: affine
+\end{flushleft}
+
+The model learns the relative importance of each token and uses 
+it to predict the next. For example, if the model is trained 
+with the above prompt and then we supply the following prompt: 
+
+\begin{flushleft}
+    Cipher text: ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy\\
+    Algorithm:
+\end{flushleft}
+
+The model shall generate the output as “affine” which it learnt 
+from training. 
+
+In our use case, we have used the GPT-Neo (Generative Pre-Trained) 
+model with 125 million parameters to achieve our objective. 
+It consists of stacks of encoders and decoders put one after 
+the other, of which has been pre-trained on Wikipedia Corpus 
+as well as Common Crawl (This has over 12 Petabytes of data 
+which is 12 years of data uploaded on the internet) datasets 
+for performing extremely well on language-based use cases. 
+Generative, as the word suggests, is for making our code generate 
+text. The architecture is similar to GPT2 except that GPT Neo 
+uses local attention in every other layer with a window size 
+of 256 tokens. All these models are available for free in 
+huggingface transformers library that can be used for a variety 
+of NLP tasks.
+
+\newpage
+
+Following steps were taken for this model:
 \begin{enumerate}
-    \item Python has an upper hand when it comes to software based on
-          image recognition and object detection. Since it is the main
-          objective of the project, choosing python was a given.Python has an upper hand when it comes to software based on
-          image recognition and object detection. Since it is the main
-          objective of the project, choosing python was a given.
-    \item Python is unbeaten when it comes to Machine Learning. Python has
-          support for myriad machine learning libraries, such as OpenCV, the
-          one being used here.
-    \item Python is comparatively easier to understand and learn. The syntax
-          is clear and simple to read and write.
-    \item And just our overall experience of using python for years.
+    \item   Each data of the dataset is converted into text prompts 
+            that is passed through a tokenizer that creates embeddings 
+            for each token in our input string. 
+    \item   The input dataset has been split into the ratio 
+            80:10:10 for training, testing and validating purposes.
+    \item   The training and validation set has been used to 
+            fine-tune the model’s hyperparameters specific to 
+            our use-case i.e.\ detecting the algorithm used in 
+            the ciphertext generation.
+    \item   We used the fine-tuned model on our test dataset 
+            to check the accuracy of our model. 
 \end{enumerate}
 
-\subsubsection{Google Colab}
-After working on the project for quite some time, we realized that we did
-not have enough hardware resources at out disposal to actually make the
-\textit{checker} work smoothly. So we decided on shifting to Google Colab.
-Google colab is an online iPython development environment similar to
-Jupyter Notebook. It uses CUDA acceleration to speed up processes, so we
-switched to it rather than continuing development
+For our testing purpose, we used various decoding strategies 
+to find the one which gives the best result. Out of the strategies: 
+Greedy Search, Beam Search and Sampling with set temperature, 
+we found sampling to give the most accurate results of all three. 
+It is a method that is in between the greedy and sampling approach.
 
-\subsubsection{LaTeX}
-LaTeX was used to write this report. LaTeX is a software system for document
-preparation. When writing, the writer uses plain text as opposed to the formatted
-text found in "What You See Is What You Get" word processors like Microsoft Word
-or LibreOffice Writer.
+The greedy method selects the next token that has the highest 
+probability as the output while sampling selects one of the 
+possible next tokens randomly. When we set a temperature, the 
+randomness is lowered such that the likelihood of high probability 
+words are increased and that of the low probability are decreased. 
+We found that a \textbf{temperature set to 0.7} gave the optimum accuracy 
+on our test data. 
 
-\subsection{The Program}
+\section{EXPERIMENTAL RESULTS}
+\subsection{Model using CNN}
 
-\subsubsection{Outline}
-The blueprint of this \textit{checker} that we thought of initially:
+Our dataset consisted of 34075 rows that were split for training, 
+testing, and validating in the ratio 80:10:10. The following 
+are the sizes for each split:
+\begin{itemize}
+    \item Train dataset: 27260 rows
+    \item Validation dataset: 3408 rows
+    \item Test dataset: 3407 rows
+\end{itemize}
 
-\begin{enumerate}
-    \item Video Input
-          \begin{itemize}[label={}]
-              \item Need some way to handle video input coming through the camera feed
-          \end{itemize}
+We also added an EarlyStopping Callback of patience 10 which 
+automatically stopped training if we do not see any validation 
+accuracy improvement after 10 epochs.
 
-    \item Processing
-          \begin{itemize}[label={}]
-              \item The input needs to be processed somehow
-          \end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/CNN Model/5_class_training_log.jpg}
+    \caption{Training Log for the 5-class Classification Model}\label{fig3:5_class_log}
+\end{figure}
 
-    \item Detecting people
-          \begin{itemize}[label={}]
-              \item Need to identify people in the video feed
-          \end{itemize}
+Here we can see that as Training Stopped at epoch 16, our best 
+model was in epoch 6 which had validation accuracy of 61.90\%
 
-    \item Measuring distance between each couple
-          \begin{itemize}[label={}]
-              \item Need to calculate the distance between every two persons
-          \end{itemize}
+\newpage
 
-    \item Mark the violations
-          \begin{itemize}[label={}]
-              \item Need to mark the ones that violate social distancing norms
-          \end{itemize}
-\end{enumerate}
+After some trial and errors, we found that for the best model 
+we could make by altering the network size, had 2.7 million 
+parameters for the five-class classification and 20.4 million 
+parameters for the four-class model
 
-\subsubsection{Proceedings}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/CNN Model/4_class_net_diagram.png}
+    \caption{Model Diagram for 4 Class Classifier}\label{fig4:4_class_net}
+\end{figure}
 
-How we proceeded with the outlines of the blueprint:
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/CNN Model/5_class_net_diagram.jpg}
+    \caption{Model Diagram for 5 Class Classifier}\label{fig5:5_class_net}
+\end{figure}
 
-\begin{enumerate}
-    \item Video Input
-          \begin{itemize}[label={}]
-              \item This was easier than we expected it to be. We just had to get our hands
-                    on some recorded footage of somewhat populated areas. We refrained from using live
-                    footage because:
-                    \begin{itemize}
-                        \item It is tough to get our hands on the light footage of a security camera or the equivalent.
-                        \item If the checker worked on recorded footage, it would work on live footage as well.
-                    \end{itemize}
-                    \pagebreak
-              \item The videos we ended up choosing:
-                    \begin{figure}[h!]
-                        \centering
-                        \begin{subfigure}[b]{0.4\linewidth}
-                            \includegraphics[width=\linewidth]{Pictures/pedestrian.jpg}
-                            \caption{Pedestrian Video}
-                        \end{subfigure}
-                        \begin{subfigure}[b]{0.4\linewidth}
-                            \includegraphics[width=\linewidth]{Pictures/shibuya.png}
-                            \caption{Shibuya Video}
-                        \end{subfigure}
-                        \caption{Still Pictures from Sample Videos}
-                        \label{fig1:stills}
-                    \end{figure}
-          \end{itemize}
+We were getting the test accuracy \textbf{60.71\% for four class classifier 
+and 60.24\% for the five-class classifier}
 
-    \item Processing
-    \begin{itemize}[label={}]
-        \item We used the OpenCV library for our video/image processing. It is a really handy library that can be used for image processing, object detection and many other purposes.
-        \lstinputlisting[caption=A Sample Code To Count No. Of Frames in a Video, label=lst1:VideoFrames]{python scripts/total_frames.py}
-    \end{itemize}
-    
-    \item Detecting People
-          \begin{itemize}
-              \item For this we decided to go with the You Only Look Once (YOLO) algorithm for object detection. The algorithm itself is discussed a bit later in the report.
-              \item We did not train the object detection neural network model ourselves. We used the prebuilt model, trained by the Darknet team \textcolor{green}{https://pjreddie.com/darknet/yolo/} because of time constraints.
-          \end{itemize}
+\subsection{Model using Transformer}
 
-    \item Measuring distance between each couple
-          \begin{itemize}
-              \item This was undeniably the toughest part of the project and took the longest time. First we decided to go with measuring the distance between the centroids of every two detections. But that may not work in every condition since it depends on the placement of camera and the view angle from the ground and perpendicular to the ground.
-              \item A conversion of the 3-dimensional footage being fed to the algorithm to 2-dimensions was more than necessary to get the top view of every frame to avoid the \textit{viewing angle problem}.
-              \item Enter \textbf{Bird's Eye View (BEV)}. This is what we called the top view of every frame. This was made possible by OpenCV's \textcolor{brown}{getPerspectiveTransform()} and \textcolor{brown}{warpPerspective()} functions.
-                    \lstinputlisting[caption=Function Bird's Eye Perspective Transformation Matrix, label=lst2:BirdsEyePerspective]{python scripts/birds_eye_perspective.py}
-              \item \textcolor{green}{\href{https://cseweb.ucsd.edu/classes/wi07/cse252a/homography_estimation/homography_estimation.pdf}{homography estimation pdf}} This piece of code essentially calculates what is called a \textit{transformation matrix}  for the supplied image (frame) which can then be used to get the centroids of the points as seen from a vertical position directly above the center of the rectangle passed to the function.
-                    \lstinputlisting[caption=Function which convert co-ordinates to it's bird's view co-ordinate, label=lst3:birdsEyeAllign]{python scripts/birds_eye_allignment.py}
-              \item We used these functions to get a two dimensional view of every frame and calculate distance between every pair of detections (people).
-          \end{itemize}
+Here we used GPT-neo with 125 million parameters and fine-tuned 
+it with our generated dataset.
 
-    \item Mark the violations
-          \begin{itemize}[label={}]
-              \item This was again a fairly easy step. We just needed the coordinates of the people in the \textit{violation zone} and make their detection rectangle red as opposed to green.
-          \end{itemize}
-\end{enumerate}
+Our dataset consisted of 34075 rows that were split for training, 
+testing, and validating in the ratio 80:10:10. The following 
+are the sizes for each split:
+\begin{itemize}
+    \item Train dataset: 27260 rows
+    \item Validation dataset: 3408 rows
+    \item Test dataset: 3407 rows
+\end{itemize}
 
-\subsection{The YOLO Algorithm}
+\newpage
+
+At the beginning, each of our input prompts are converted into 
+tokens using GPT2 tokenizer. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/text_tokenizer.jpg}
+    \caption{GPT2 Tokenizer in action}\label{fig6:text_tokenizer}
+\end{figure}
+
+Here we see that the input prompt containing ciphertext and 
+result has their corresponding tokens. Since we have used a 
+tokenizer of fixed size, the unused indexes have higher integer 
+values and have been masked by an attention mask containing 0 
+at that index.
+
+The training and validation data was fit into the model each 
+having a batch size of 32 and was run for 5 epochs.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Pictures/Tranformer Model/transformer_train_params.jpg}
+    \caption{Training Parameters for the GPT2 Fine Tuning}\label{fig7:gpt2_params}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pictures/Tranformer Model/transformer_train_res.jpg}
+    \caption{Training and Validation Loss obtained every 500 steps}\label{fig8:gpt2_train}
+\end{figure}
+
+After fine-tuning, we tested the model on our test dataset containing 
+3407 rows. The model has shown an \textbf{overall accuracy of 85.236\%}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/transformer_test_res.jpg}
+    \caption{Testing Accuracy for the Fine-Tuned GPT2 Model}\label{fig8:gpt2_test_res}
+\end{figure}
+
+\newpage
+
+\section{FUTURE}
+
+We would also like to alter the test to “image” conversion for 
+the dataset to make CNN model perform better as it is not performing 
+up to the standards that we want.
+
+We would like to finetune our models to see if we can increase 
+the accuracy. We are also curious to see if we can use an RNN 
+instead of transformers and record the difference in accuracy 
+of the two.
+
+A similar analysis can be performed on other models such as:
+\begin{itemize}
+    \item OPT
+    \item BERT
+    \item GPTJ
+    \item Bloom
+\end{itemize}
+
+Apart from this, we would like to explore feature detection 
+to create a model and compare this approach with the transformer-based 
+model.
+
+
+Once we are satisfied with the model accuracy on 5 classes of 
+ciphers, we would like to extend the model to detect more classes 
+such as AES, DES, RSA, etc.
+
+\section{\textcolor{red}{CONCLUSION}}
 
 \end{document}

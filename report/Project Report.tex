@@ -7,8 +7,8 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \lhead{}
-\rhead{\textcolor{red}{Mini Project Title}}
-\lfoot{Department of Computer Engineering}
+\rhead{Detection of Cipher Types using Artificial Neural Networks}
+\lfoot{Department of Computer Science an Technology}
 
 \usepackage{lipsum}
 
@@ -61,6 +61,8 @@
 
 \usepackage{hyperref}
 
+\usepackage{indentfirst} % for indenting first paragraph aftera section tag
+
 \begin{document}
 \begin{titlepage}
     \begin{tikzpicture}[overlay,remember picture]
@@ -91,7 +93,9 @@
         \textup{\large A PROJECT REPORT SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS\\[0.4cm]ON}\\[0.4cm]
 
         \begin{LARGE}
-            {\textbf {\textcolor{red}{''PROJECT TITLE''}}}
+            \textbf {“DETECTION OF CIPHER TYPES USING}\\
+            [0.2cm]
+            \textbf {ARTIFICIAL NEURAL NETWORKS”}
         \end{LARGE}\\[1cm]
 
         \textit{SUBMITTED BY}\\[0.3cm]
@@ -145,7 +149,7 @@
         \end{LARGE}\\[1.2cm]
     \end{center}
 
-    It is certified hereby that this report, titled \textcolor{red}{*whatever the title is*}, and all the attached
+    It is certified hereby that this report, titled “Detection of Cipher Types using Artificial Neural Networks”, and all the attached
     documents herewith are authentic records of Rajdeep Ghosh (510519002), Swarnali Mondal (510510103), Krishnendu Bera (510519004),
     Arnab Sen (510519006), Sanjana Chakravarty (510519038), and Abhiroop Mukherjee (510519109) from the Prestigious Department of Computer Science And Technology
     of the Distinguished and Respected IIEST Shibpur under my guidance.
@@ -178,7 +182,7 @@
     \end{center}
 
 
-    \paragraph{\normalfont\textit{\indent We, as the students of IIEST, consider ourselves honoured to be working with Dr.\ Malay Kule.
+    \paragraph{\normalfont\textit{\indent We, as the students of IIEST, consider ourselves honoured to be working with Dr.\ Malay Kule and Mr.\ Subinoy Sikdar.
             The success of this project would not have been possible without his useful insights,
             appropriate guidance and necessary criticism.}}
     \paragraph{\normalfont\textit{\indent We would pass our token of token of gratitude to the Department of Computer Science And Technoogy as well for providing
@@ -210,80 +214,64 @@
 
 %%%%%%%%% MAIN TEXT STARTS HERE %%%%%%%%%%
 \section{INTRODUCTION}
-\subsection{Motivation}
-Coronaviruses are a group of related RNA viruses that cause diseases in mammals
-and birds. In humans and birds, they cause respiratory tract infections that can
-range from mild to lethal. Mild illnesses in humans include some cases of the
-common cold (which is also caused by other viruses, predominantly rhinoviruses),
-while more lethal varieties can cause SARS, MERS, and COVID-19.
+Information is the power in the present day. 
+Information and data should be protected from 
+unauthorized access, distortion, or any 
+unauthorized activity. 
 
-With the increase in the spread of the dangerous and highly contagious \textbf{Novel Coronavirus}
-and the underlying disease caused by it, \textbf{COVID-19},
-it is a requirement now more than ever to follow the social distancing
-norms set in place by the scientists and researchers.
+Cryptography is the study of secret writing. Information is 
+no longer hidden due to the existence of network adversaries. 
+Our communication channel is completely unstable; a third 
+party might covertly eavesdrop and obtain information from 
+the network or from the channel. Here, cryptography is crucial 
+in preventing unauthorized access to our data. Using key(s), 
+cryptography converts plaintext messages into unreadable ciphertext 
+and vice versa. Encryption is the process of employing a key(s) 
+to transform the original message into an unintelligible format, 
+while decryption is the act of using a key(s) to convert the 
+cipher text back to plaintext. The messages can only be encrypted 
+or decrypted by the authorized user.
 
-But as we all know, India is a country with a not-so-small population,
-so it is pretty understandable and obvious that the law enforcement will
-not be able to actually enforce it on every single person. Therefore,
-new means of automata in place of actual individuals is a no brainier.
+The project's objective is to examine encrypted text files to 
+find and categorize their cipher types using artificial neural 
+networks. The cipher algorithm classification model is based 
+on the steps: 
+\begin{enumerate}
+    \item   Creation of a collection of cipher texts with various '
+            cipher texts.
+    \item   Building a Deep Neural Network (DNN) and training 
+            it with a variety of cipher texts and training parameters 
+            to enable accurate learning and cipher text classification. 
+    \item   Determine the cipher text's kind. 
+\end{enumerate}
 
-That is where we come in.
+First, the Caesar, Affine, Vigenère, Substitution, and Rail 
+Fence ciphers were used to encrypt English texts. Following 
+the submission of the encrypted files to the CNN and Transformer 
+models, predictions are created, and accuracy is assessed.
 
-\subsection{The Idea Behind The Project}
-The idea behind the working of this software was simple. The software just needed
-to be able to look at a live feed (or recorded footage) of a camera and know
-which of the people present in the footage are actually following the social
-distancing norms and which of them are not, and mark either one appropriately.
-That is where out journey to build a social distance checker started.
+\section{PRELIMINARIES}
 
-\textcolor{red}{// will add more later probably lul}
+To ramp up for this project, we needed a basic knowledge of 
+neural networks and deep learning and an overview of the encryption 
+algorithms that we would be targeting in this project.
+
+Having some knowledge of encryption algorithms might be useful 
+for feature extraction.
+
+The ML topics that were covered in this project are:
+\begin{itemize}
+    \item Perceptron
+    \item Artificial Neural Network (ANN)
+    \item Recurrent Neural Network (RNN)
+    \item Convolutional Neural Network (CNN)
+    \item Transformers
+    \item Attention Mechanism in Deep Learning
+\end{itemize}
+
+\section{\textcolor{red}{LITERATURE SURVEY}}
 
 \newpage
-
-\section{PREREQUISITES}
-
-\subsection{Outdoor Requirements}
-It is important to mention here that this is not a portable software that can
-be fed any footage and just be expected to work. There need to be some
-calibration measures taken to actually get this software working:
-
-\begin{itemize}
-    \item Actually knowing the local social distancing norms
-          \begin{itemize}
-              \item The minimum distance set for social distancing by the local government
-          \end{itemize}
-
-    \item Finding a good position for the camera
-          \begin{itemize}
-              \item The footage needs to be taken from a high enough place
-          \end{itemize}
-
-    \item Knowing the required distance in pixels
-          \begin{itemize}
-              \item This will depend on the position and angle of the camera's view
-          \end{itemize}
-\end{itemize}
-
-\subsection{Hardware and Software Requirements}
-The tools used to build this software are platform independent. However,
-there are a few requirements needed to be fulfilled to get the program
-working. These are:
-
-\begin{itemize}
-    \item Software Requirements
-          \begin{itemize}
-              \item Python - 3.5 or above
-              \item OpenCV-Python - version 2 or above
-              \item YOLOv3 Configuration and Network Weights
-              \item Numpy
-          \end{itemize}
-
-    \item Hardware Requirements
-          \begin{itemize}
-              \item A GPU is optional yet recommended to get the best performance
-              \item If a GPU is not being used, the CPU need to be good enough
-          \end{itemize}
-\end{itemize}
 
 \section{THE PROJECT}
 \subsection{Software Used}

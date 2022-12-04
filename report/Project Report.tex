@@ -82,7 +82,7 @@
         \begin{center}
             \begin{figure}[h]   %h means here other options t , b, p, etc.
                 \centering
-                \includegraphics[width=0.3\linewidth]{Pictures/IIESTS Logo.png}
+                \includegraphics[width=0.3\linewidth]{Pictures/IIESTS_Logo.png}
             \end{figure}
         \end{center}
 
@@ -135,7 +135,7 @@
         \begin{center}
             \begin{figure}[h]   %h means here other options t , b, p, etc.
                 \centering
-                \includegraphics[width=0.3\linewidth]{Pictures/IIESTS Logo.png}
+                \includegraphics[width=0.3\linewidth]{Pictures/IIESTS_Logo.png}
             \end{figure}
         \end{center}
 
@@ -152,9 +152,9 @@
     Arnab Sen (510519006), Sanjana Chakravarty (510519038), and Abhiroop Mukherjee (510519109) from the Prestigious Department of Computer Science And Technology
     of the Distinguished and Respected IIEST Shibpur under my guidance.
 
-    The works of these students are satisfies all the requirements for which it is submitted.
+    The works of these students satisfy all the requirements for which it is submitted.
     To the extent of my knowledge, it has not been submitted to any different institutions for
-    the awards of degree.
+    the award of a degree.
 
     \vspace{5cm}
     \begin{multicols}{2}
@@ -180,13 +180,13 @@
     \end{center}
 
 
-    \paragraph{\normalfont\textit{\indent We, as the students of IIEST, consider ourselves honoured to be working with Dr.\ Malay Kule and Mr.\ Subinoy Sikdar.
+    \paragraph{\normalfont\textit{\indent We, as the students of IIEST, consider ourselves honored to be working with Dr.\ Malay Kule and Mr.\ Subinoy Sikdar.
             The success of this project would not have been possible without his useful insights,
-            appropriate guidance and necessary criticism.}}
-    \paragraph{\normalfont\textit{\indent We would pass our token of token of gratitude to the Department of Computer Science And Technoogy as well for providing
-            us with the opportunity to be able to tackle real world problems while improving
-            our problem solving ability and thinking capacity by organising this project. We all have
-            learnt quite a handful of new skills and are eager to use them henceforth as well.}}
+            appropriate guidance, and necessary criticism.}}
+    \paragraph{\normalfont\textit{\indent We would pass our token of gratitude to the Department of Computer Science And Technology as well for providing
+            us with the opportunity to be able to tackle real-world problems while improving
+            our problem-solving ability and thinking capacity by organizing this project. We all have
+            learned quite a handful of new skills and are eager to use them henceforth as well.}}
 
     \begin{flushleft}
         \textit{Rajdeep Ghosh (510519002)\\
@@ -235,29 +235,16 @@ find and categorize their cipher types using artificial neural
 networks. The cipher algorithm classification model is based 
 on the steps: 
 \begin{enumerate}
-    \item   Creation of a collection of cipher texts with various '
-            cipher texts.
-    \item   Building a Deep Neural Network (DNN) and training 
-            it with a variety of cipher texts and training parameters 
-            to enable accurate learning and cipher text classification. 
-    \item   Determine the cipher text's kind. 
+    \item   Creation of a collection of cipher texts with various cipher texts.
+    \item   Building a Deep Neural Network (DNN) and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification. 
+    \item   Using the trained model to determine the algorithm that might have been used to generate the cipher text. 
 \end{enumerate}
-
-First, the Caesar, Affine, Vigenère, Substitution, and Rail 
-Fence ciphers were used to encrypt English texts. Following 
-the submission of the encrypted files to the CNN and Transformer 
-models, predictions are created, and accuracy is assessed.
 
 \section{PRELIMINARIES}
 
-To ramp up for this project, we needed a basic knowledge of 
-neural networks and deep learning and an overview of the encryption 
-algorithms that we would be targeting in this project.
+To ramp up for this project, we needed a basic knowledge of neural networks and deep learning and an overview of the classical encryption algorithms that we would be targeting in this project. Having specific knowledge of the encryption algorithms will be useful to particularly train the model.
 
-Having some knowledge of encryption algorithms might be useful 
-for feature extraction.
-
-The ML topics that were covered in this project are:
+The ML topics that are covered in this project are:
 \begin{itemize}
     \item Perceptron
     \item Artificial Neural Network (ANN)
@@ -271,32 +258,27 @@ The ML topics that were covered in this project are:
 
 \section{LITERATURE SURVEY}
 
-Over the recent years, artificial neural networks (ANNs) have 
-come to prominence. Applications and research areas for ANNs 
-are numerous and diverse. Their primary objective is the quick 
-filtering, classification, and processing of (mainly) non-linear 
-data, such as speech recognition, picture processing, and language 
-translation. In addition, researchers were able to “train” ANNs 
-to play games or produce artwork in the manner of well-known artists.
+Over recent years, artificial neural networks (ANNs) have 
+come to prominence. Applications and research areas for ANNs are numerous and diverse. Their primary objective is the quick filtering, classification, and processing of (mainly) non-linear data, such as speech recognition, picture processing, and language translation. In addition, researchers were able to “train” ANNs to play games (e.g. AlphaStar \cite{AlphaStar:online}) or produce artwork in the manner of well-known artists.
 
 On the MysteryTwister C3\cite{Welcomet7:online} (MTC3) website 
 in late 2019, Stamp posted a challenge titled “Cipher ID”. The 
 task is to identify the type of cipher used to encrypt each 
 of the 500 ciphertexts in the collection, which were encrypted 
 using 5 distinct ciphers and random keys. The individual ciphertexts 
-were then mixed up after each cypher type had been employed 
+were then mixed up after each cipher type had been employed 
 exactly 100 times. All prior solvers completed the task by deciphering 
 the ciphertexts using solvers for the 5 various cipher types, 
 despite the author's goal of encouraging others to begin research 
-in the fields of machine learning and cypher type detection. 
+in the fields of machine learning and cipher type detection. 
 The participants were able to determine the type of encryption 
-algorithm that was employed after learning the plaintext of each cipher.
+the algorithm that was employed after learning the plaintext of each cipher.
 
 We worked on the cipher text detection problem with the help of ANN 
-and in this process TensorFlow and Pytorch were used. TensorFlow 
+and in this process, TensorFlow and Pytorch were used. TensorFlow 
 is a free and open-source data flow and math library developed 
 by Google written in Python, C++, and CUDA, and was publicly
-released in 2015. PyTorch is an open source machine learning (ML) 
+released in 2015. PyTorch is an open-source machine learning (ML) 
 framework based on the Python programming language and the Torch 
 library which was initially released in the year 2016.
 
@@ -339,10 +321,10 @@ of the cipher type, and the recovery of cryptographic keys.
     programming languages on a single machine.
     \item GPT-NeoX-20B:\@ An Open-Source Autoregressive Language 
     Model\cite{black2022gpt}, where GPT-NeoX-20B was introduced 
-    which was a 20 billion parameter autoregressive language model 
+    which was a 20-billion-parameter autoregressive language model 
     trained on the Pile.
     \item Fine-tune a pretrained model\cite{Finetune56:online}, 
-    a tutorial where a step by step process to fine-tune a
+    a tutorial where a step-by-step process to fine-tune a
     pretrained model with a deep learning framework is discussed.
     \item Fine-Tuning Transformers for NLP\cite{FineTuni38:online}, 
     another tutorial on how to fine-tune two different transformer 
@@ -370,47 +352,37 @@ The dataset has been generated for five types of ciphers:
     \item Rail Fence
 \end{itemize}
 
-The plaintext used for encryption was text from Shakespeare’s Hamlet and Macbeth.
+The plaintext used for encryption was a text from Shakespeare’s Hamlet and Macbeth.
 
-For Data Preporcessing, we converted text to lowercase and removed all whitespaces and punctuation.
+For Data Preprocessing, we converted text to lowercase and removed all whitespaces and punctuation.
 
 Each of the classes has 6815 data points, resulting in a total 
 of 34075 data points and each data point consists of the ciphertext 
 (input) and the encryption algorithm (output).
 
 We wrote a Python script for each of the ciphers to encrypt 
-the data into a Pandas DataFrame. The combined DataFrame is 
+the data into a Pandas DataFrame. The combined DataFrame is shuffled and 
 exported as a CSV file for the resulting dataset.
 
 \subsection{Model using CNN}
 
-The main intuition behind this method is that CNN uses its kernel 
-as a “local receptive field”, which means that a CNN kernel 
-(small in size as we are dealing with stream cipher and not 
-block cipher) can look its nearby characters and will find some 
-pattern in the ciphertext
+The main intuition behind this method is that CNN uses its kernel as a “local receptive field”, which means that a CNN kernel (small in size as we are dealing with stream cipher and not block cipher) can look at its nearby characters and will find some pattern in the ciphertext
 
-So, we first converted a every ciphertexts into their respective 
-list of tokens using a  TextVectorizer, then we converted that 
-list into an image as follows:
+So, we first converted every ciphertext into their respective list of tokens using a  TextVectorizer, then we converted that list into a 2D text matrix as follows:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.4\linewidth]{Pictures/CNN Model/string_conversion.png}
+    \includegraphics[width=0.4\linewidth]{Pictures/CNN_Model/string_conversion.png}
     \caption{Converting text to “image”}\label{fig1:convert_text_img}
 \end{figure}
 
-Note that this conversion depends on the length of string used, 
-i.e.\ for a string for length $n$, we will generate a $n \times n$ 
-“image”. After we generate all variable sized images, we resize
-them to $60 \times 60$ using Bilinear Interpolation.
+Note that this conversion depends on the length of the string used, i.e.\ for a string for length $n$, we will generate a $n \times n$ “image”. After we generate all variable-sized images, we resize them to $60 \times 60$ using Bilinear Interpolation.
 
 Now we can see that a kernel (say $3 \times 3$ with stride one) 
 can observe its previous as well as its next character and 
-can use that information to find pattern in the ciphertext.
+can use that information to find patterns in the ciphertext.
 
-We use a CNN to extract features from the “image” then we feed 
-those features to a Dense Network to classify between the ciphertext types.
+We use a CNN to extract features from the “image” and then we feed those features to a Dense Network to classify between the ciphertext types.
 
 \newpage
 
@@ -424,18 +396,18 @@ and then computing the relative importance of a token to other tokens.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/transformer_arch.jpg}
+    \includegraphics[width=\linewidth]{Pictures/Transformer_Model/transformer_arch.jpg}
     \caption{Transformer architecture}\label{fig2:transformer_arch}
 \end{figure}
 
-A transformer is an advanced sequence to sequence model that 
-is used to predict the next token depending upon all the previous 
+A transformer is an advanced sequence-to-sequence model that 
+is used to predict the next token depending on all the previous 
 tokens. From our dataset containing encrypted text and the algorithm 
 used for encryption, we create a text prompt from each row for 
 example: 
 \begin{flushleft}
-    Cipher text: ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy\\
-    Algorithm: affine
+    Cipher text: \texttt{ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy}\\
+    Algorithm: \texttt{affine}
 \end{flushleft}
 
 The model learns the relative importance of each token and uses 
@@ -443,36 +415,24 @@ it to predict the next. For example, if the model is trained
 with the above prompt and then we supply the following prompt: 
 
 \begin{flushleft}
-    Cipher text: ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy\\
-    Algorithm:
+    Cipher text: \texttt{ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy}\\
+    Algorithm: 
 \end{flushleft}
 
-The model shall generate the output as “affine” which it learnt 
+The model shall generate the output as “affine” which it learned 
 from training. 
 
-In our use case, we have used the GPT-Neo (Generative Pre-Trained) 
-model with 125 million parameters to achieve our objective. 
-It consists of stacks of encoders and decoders put one after 
-the other, of which has been pre-trained on Wikipedia Corpus 
-as well as Common Crawl (This has over 12 Petabytes of data 
-which is 12 years of data uploaded on the internet) datasets 
-for performing extremely well on language-based use cases. 
-Generative, as the word suggests, is for making our code generate 
-text. The architecture is similar to GPT2 except that GPT Neo 
-uses local attention in every other layer with a window size 
-of 256 tokens. All these models are available for free in 
-huggingface transformers library that can be used for a variety 
-of NLP tasks.
+In our use case, we have used the GPT-Neo (Generative Pre-Trained) model with 125 million parameters to achieve our objective.  It consists of stacks of encoders and decoders put one after the other, of which has been pre-trained on Wikipedia Corpus as well as Common Crawl (This has over 12 Petabytes of data which is 12 years of data uploaded on the internet) datasets for performing extremely well on language-based use cases. Generative, as the word suggests, is for making our code generate text. The architecture is similar to GPT2 except that GPT Neo uses local attention in every other layer with a window size of 256 tokens. All these models are available for free in the Hugging Face transformers library which can be used for a variety of NLP tasks.
 
 \newpage
 
-Following steps were taken for this model:
+The following steps were taken for this model:
 \begin{enumerate}
     \item   Each data of the dataset is converted into text prompts 
             that is passed through a tokenizer that creates embeddings 
             for each token in our input string. 
     \item   The input dataset has been split into the ratio 
-            80:10:10 for training, testing and validating purposes.
+            80:10:10 for training, testing, and validating purposes.
     \item   The training and validation set has been used to 
             fine-tune the model’s hyperparameters specific to 
             our use-case i.e.\ detecting the algorithm used in 
@@ -483,14 +443,14 @@ Following steps were taken for this model:
 
 For our testing purpose, we used various decoding strategies 
 to find the one which gives the best result. Out of the strategies: 
-Greedy Search, Beam Search and Sampling with set temperature, 
+Greedy Search, Beam Search, and Sampling with set temperature, 
 we found sampling to give the most accurate results of all three. 
 It is a method that is in between the greedy and sampling approach.
 
 The greedy method selects the next token that has the highest 
 probability as the output while sampling selects one of the 
 possible next tokens randomly. When we set a temperature, the 
-randomness is lowered such that the likelihood of high probability 
+randomness is lowered such that the likelihood of high-probability 
 words are increased and that of the low probability are decreased. 
 We found that a \textbf{temperature set to 0.7} gave the optimum accuracy 
 on our test data. 
@@ -513,29 +473,28 @@ accuracy improvement after 10 epochs.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/CNN Model/5_class_training_log.jpg}
+    \includegraphics[width=\linewidth]{Pictures/CNN_Model/5_class_training_log.jpg}
     \caption{Training Log for the 5-class Classification Model}\label{fig3:5_class_log}
 \end{figure}
 
-Here we can see that as Training Stopped at epoch 16, our best 
-model was in epoch 6 which had validation accuracy of 61.90\%
+Here we can see that as Training Stopped at epoch 16, our best model was in epoch 6 which had a validation accuracy of 61.90\%
 
 \newpage
 
-After some trial and errors, we found that for the best model 
+After some trial and error, we found that the best model 
 we could make by altering the network size, had 2.7 million 
 parameters for the five-class classification and 20.4 million 
 parameters for the four-class model
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/CNN Model/4_class_net_diagram.png}
+    \includegraphics[width=\linewidth]{Pictures/CNN_Model/4_class_net_diagram.png}
     \caption{Model Diagram for 4 Class Classifier}\label{fig4:4_class_net}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/CNN Model/5_class_net_diagram.jpg}
+    \includegraphics[width=\linewidth]{Pictures/CNN_Model/5_class_net_diagram.jpg}
     \caption{Model Diagram for 5 Class Classifier}\label{fig5:5_class_net}
 \end{figure}
 
@@ -558,12 +517,12 @@ are the sizes for each split:
 
 \newpage
 
-At the beginning, each of our input prompts are converted into 
+In the beginning, each of our input prompts is converted into 
 tokens using GPT2 tokenizer. 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/text_tokenizer.jpg}
+    \includegraphics[width=\linewidth]{Pictures/Transformer_Model/text_tokenizer.jpg}
     \caption{GPT2 Tokenizer in action}\label{fig6:text_tokenizer}
 \end{figure}
 
@@ -577,13 +536,13 @@ The training and validation data was fit into the model each
 having a batch size of 32 and was run for 5 epochs.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\linewidth]{Pictures/Tranformer Model/transformer_train_params.jpg}
+    \includegraphics[width=0.8\linewidth]{Pictures/Transformer_Model/transformer_train_params.jpg}
     \caption{Training Parameters for the GPT-Neo Fine Tuning}\label{fig7:gpt-neo_params}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Pictures/Tranformer Model/transformer_train_res.jpg}
+    \includegraphics[width=0.5\linewidth]{Pictures/Transformer_Model/transformer_train_res.jpg}
     \caption{Training and Validation Loss obtained every 500 steps}\label{fig8:gpt-neo_train}
 \end{figure}
 
@@ -592,7 +551,7 @@ After fine-tuning, we tested the model on our test dataset containing
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{Pictures/Tranformer Model/transformer_test_res.jpg}
+    \includegraphics[width=\linewidth]{Pictures/Transformer_Model/transformer_test_res.jpg}
     \caption{Testing Accuracy for the Fine-Tuned GPT-Neo Model}\label{fig8:gpt-neo_test_res}
 \end{figure}
 
@@ -626,6 +585,16 @@ ciphers, we would like to extend the model to detect more classes
 such as AES, DES, RSA, etc.
 
 \section{\textcolor{red}{CONCLUSION}}
+
+This report shows the current progress of our work in the detection of ciphertext using Artificial Neural Networks. Here we used two types of Neural Networks to achieve our objective, namely: Convolution Neural Networks and Transformer approach. 
+\\
+
+With the CNN approach, our model was able to achieve an accuracy of 61.90\% for 5 class classifications. We saw a significant improvement with the transformers approach on the same dataset and classes giving an accuracy of 83.24\%. This was primarily due to the higher number of parameters of Gpt-neo and the ability to memorize the local importance of tokens due to the self-attention feature. 
+\\
+
+In future work, we would like to extend the number of classes of ciphertext and also increase our dataset to find how our models perform in the new environment. We would like to try a feature-learning approach and also use more transformer models.  We would also like to solve the Cipher ID challenge from Mystery Twister C3  consisting of 500 ciphertexts. Based on our results and improvements, we would like to publish our work in a journal to see how our results stand in global competition. 
+
+
 \newpage
 \renewcommand{\refname}{REFERENCES}
 \bibliographystyle{ieeetr}

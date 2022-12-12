@@ -10,15 +10,11 @@
 \rhead{Detection of Cipher Types using Artificial Neural Networks}
 \lfoot{Department of Computer Science an Technology}
 
-\usepackage{lipsum}
-
 \usepackage{multicol}
 
 \usepackage{ragged2e}
 
 \usepackage{xcolor}
-
-\usepackage{enumitem}
 
 \usepackage{caption}
 \usepackage{subcaption}
@@ -76,7 +72,10 @@
 
     \begin{center}
 
-        \textup{\large  \textbf{INDIAN INSTITUTE OF ENGINEERING}\\\textbf{SCIENCE AND TECHNOLOGY, SHIBPUR}}\\ Howrah, West Bengal, India – 711103\\[0.5cm]\textbf{\large DEPARTMENT OF COMPUTER SCIENCE}\\\textbf{\large AND TECHNOLOGY}
+        \textup{\large  \textbf{INDIAN INSTITUTE OF ENGINEERING}\\
+        \textbf{SCIENCE AND TECHNOLOGY, SHIBPUR}}\\ 
+        Howrah, West Bengal, India – 711103\\
+        [0.5cm]\textbf{\large DEPARTMENT OF COMPUTER SCIENCE}\\\textbf{\large AND TECHNOLOGY}
 
         %---------------------------------Figure------------------------------
         \begin{center}
@@ -88,7 +87,7 @@
 
         %----------------------------
 
-        \textup{\large A PROJECT REPORT SUBMITTED IN PARTIAL FULFILLMENT OF THE REQUIREMENTS\\[0.4cm]ON}\\[0.4cm]
+        \textup{\large A PROJECT REPORT SUBMITTED IN PARTIAL FULFILMENT OF THE REQUIREMENTS\\[0.4cm]ON}\\[0.4cm]
 
         \begin{LARGE}
             \textbf {“DETECTION OF CIPHER TYPES USING}\\
@@ -238,16 +237,124 @@ on the steps:
 
 \section{PRELIMINARIES}
 
-To ramp up for this project, we needed a basic knowledge of neural networks and deep learning and an overview of the classical encryption algorithms that we would be targeting in this project. Having specific knowledge of the encryption algorithms will be useful to particularly train the model.
+To ramp up for this project, we needed a basic knowledge of neural networks and deep learning and an overview of the classical encryption algorithms that we would be targeting in this project. Having specific knowledge of the encryption algorithms will be useful to particularly train the model.\\
 
-The ML topics that are covered in this project are:
+
+The ML topics that are covered in this project are:  
+
 \begin{itemize}
-    \item Perceptron
-    \item Artificial Neural Network (ANN)
-    \item Recurrent Neural Network (RNN)
-    \item Convolutional Neural Network (CNN)
-    \item Transformers
-    \item Attention Mechanism in Deep Learning
+    \item \textbf{Artificial Neural Network (ANN)} - An artificial neural network (ANN) is a type of machine learning model 
+    that is inspired by the structure and function of the human brain. ANNs consist of layers of interconnected neurons, which process 
+    input data and generate output values. ANNs can be trained to perform a variety of tasks, such as classification, regression, and clustering.
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.5\linewidth]{Pictures/Preliminaries/ANN.png}
+        \caption{Artificial Neural Network}\label{fig:ANN}
+    \end{figure}
+
+    \item \textbf{Perceptron} -A perceptron is a type of artificial neural network (ANN) that can be used for binary classification 
+    tasks. It consists of a single layer of neurons, with each neuron receiving input from multiple sources, and producing a single 
+    output value. The output of a perceptron is determined by a set of weights that are applied to the input values, and a threshold 
+    value that is used to determine whether the output is 0 or 1. 
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6\linewidth]{Pictures/Preliminaries/Single-Perceptron.png}
+        \caption{Single Perceptron}\label{fig:Perceptron}
+    \end{figure}
+
+
+    \item \textbf{Recurrent Neural Network (RNN)} - A recurrent neural network (RNN) is a type of ANN that is designed to process sequential 
+    data, such as time series data or natural language text. RNNs have feedback connections that allow them to use information from previous 
+    time steps to process the current input, which enables them to capture dependencies between input elements over time. RNNs are often used 
+    for tasks such as language translation and speech recognition.  
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.6\linewidth]{Pictures/Preliminaries/RNN.png}
+        \caption{Recurrent Neural Network}\label{fig:RNN}
+    \end{figure}
+
+    \item \textbf{Convolutional Neural Network (CNN)} - CNNs consist of multiple layers of interconnected neurons, which process the input data 
+    in a hierarchical manner. The first layer of a CNN typically consists of a set of filters, which are applied to the input data to extract features 
+    such as edges and textures. These features are then passed to the next layer of the CNN, where they are combined and processed to extract more 
+    complex features, such as shapes and objects. The output of a CNN is a set of probabilities that indicate the likelihood that the input data 
+    belongs to each of the possible classes.  
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Pictures/Preliminaries/CNN.jpeg}
+        \caption{Convolutional Neural Network}\label{fig:CNN}
+    \end{figure}
+
+    \item \textbf{Transformers} - The "Attention is all you need" paper is a research paper published in 2017 that presents the transformer, a novel 
+    neural network architecture for natural language processing (NLP) tasks. The transformer is a type of encoder-decoder model, which is commonly used 
+    for tasks such as machine translation and text summarization. The key innovation of the transformer is the use of self-attention, a mechanism that allows 
+    the model to learn dependencies between different words in the input sentence. This allows the transformer to process the input sentence in parallel, 
+    rather than in a sequential manner, which makes it much more efficient and scalable than previous NLP models.
+
+    \item \textbf{Attention Mechanism} - Self-attention is a mechanism used in the transformer, a neural network architecture for natural language processing 
+    (NLP) tasks. Self-attention allows the model to learn dependencies between different words in the input sentence, by computing a weighted sum of the input 
+    words based on their relevance to each other.
+
+\end{itemize}
+  
+
+Below are the ciphers which we used to generate our dataset:  
+
+\begin{itemize}
+    \item \textbf{Caesar Cipher} - The Caesar cipher is a simple substitution cipher that replaces each letter in a message with a different letter based on a fixed shift 
+    value. The shift value determines how many letters to the right or left each letter in the message is replaced with. For example, if the shift value is 3, the letter "A" 
+    would be replaced with "D", and the letter "B" would be replaced with "E".  
+
+
+    The Caesar cipher can be represented using the following formula, where the input message is represented by the variable "m" and the shift value is represented by the 
+    variable "k": 
+
+    \textbf{c = (m + k) \% 26}  
+
+    \item \textbf{Affine Cipher} - The affine cipher is a type of substitution cipher that uses a combination of linear and modular arithmetic to encrypt and decrypt messages. 
+    It uses two keys, a and b, to determine how each letter in the input message is replaced with a different letter in the output message. The affine cipher can be represented 
+    using the following formula, where the input message is represented by the variable "m", the key "a" is a number that is coprime to 26, and the key "b" is any number between 
+    0 and 25: 
+
+    \textbf{c = (a*m + b) \% 26}  
+
+    \item \textbf{Vigenère Cipher} - The Vigenère cipher is a polyalphabetic substitution cipher that uses a keyword to encrypt and decrypt messages. The keyword is repeated to 
+    create a key that is the same length as the input message, and each letter in the message is replaced with a different letter based on the corresponding letter in the key. 
+    The Vigenère cipher is considered to be more secure than the Caesar cipher and the affine cipher, as it uses a different substitution for each letter in the message.
+    The Vigenère cipher can be represented using the following formula, where the input message is represented by the variable "m", the keyword is represented by the variable 
+    "k", and the length of the message is represented by the variable "n": 
+
+    \textbf{c = (m + k) \% 26}
+
+    \item \textbf{Monoalphabetic Substitution Cipher} - The monoalphabetic substitution cipher is a type of substitution cipher that uses a fixed mapping of letters to encrypt and 
+    decrypt messages. Each letter in the input message is replaced with a different letter according to the fixed mapping, but the mapping does not change for different letters in 
+    the message. This means that the same letter in the input message will always be replaced with the same letter in the output message.  
+
+    The monoalphabetic substitution cipher is less secure than the Caesar cipher, the affine cipher, and the Vigenère cipher, as it only uses a single substitution for each letter 
+    in the message.
+
+    \item \textbf{Rail Fence Cipher} - The rail fence cipher is a simple transposition cipher that is used to encrypt and decrypt messages by rearranging the letters in the input 
+    message. The rail fence cipher is based on the idea of writing the message on a grid of squares, with each letter in the message written in a different square. The message is 
+    then read off the grid in a zig-zag pattern, starting from the top left corner and moving to the right and then down.  
+
+    The rail fence cipher can be represented using the following formula, where the input message is represented by the variable "m" and the number of rows in the grid is represented 
+    by the variable "n":   
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Pictures/Preliminaries/Rail_fence.png}
+    \end{figure}
+
+    This formula shows how the letters in the input message are rearranged to create the encrypted message
+
+    
+    
+    
+
+    
 \end{itemize}
 
 \newpage
@@ -381,25 +488,94 @@ We use a CNN to extract features from the matrix and then we feed those features
 
 \newpage
 
-\subsection{Model using Transformer}
+\subsection{Model using Transformer}  
 
-The main intuition behind this method is to compute the relative 
-importance of a ciphertext character with respect to the other 
-ciphertext characters. A transformer model works on the encoder 
-decoder architecture converting ciphertext characters to tokens 
-and then computing the relative importance of a token to other tokens.
+The Transformer in NLP is a novel architecture that aims to solve sequence-to-sequence tasks 
+while handling long-range dependencies with ease. The Transformer was proposed in the paper 
+Attention Is All You Need \cite{https://doi.org/10.48550/arxiv.1706.03762}.
 
+\hfill
+
+Quoting from the paper:
+
+“The Transformer is the first transduction model relying entirely on self-attention to compute 
+representations of its input and output without using sequence-aligned RNNs or convolution.”
+
+\hfill
+
+Here, “transduction” means the conversion of input sequences into output sequences. The idea behind Transformer is to handle the dependencies between input and output with attention and recurrence completely.
+  
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\linewidth]{Pictures/Transformer_Model/transformer_arch.jpg}
     \caption{Transformer architecture}\label{fig2:transformer_arch}
-\end{figure}
+\end{figure}  
 
-A transformer is an advanced sequence-to-sequence model that 
-is used to predict the next token depending on all the previous 
-tokens. From our dataset containing encrypted text and the algorithm 
+The encoder and decoder blocks are actually multiple identical encoders and decoders stacked 
+on top of each other. Both the encoder stack and the decoder stack have the same number of units.
+
+\hfill
+
+The number of encoder and decoder units is a hyperparameter.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pictures/Transformer_Model/Encoder-Decoder.png}
+    \caption{Encoder Decoder Stacks}\label{fig2:encoder_decoder}
+\end{figure}  
+
+This is how it works:  
+
+\begin{itemize}
+    \item The word embeddings of the input sequence are passed to the first encoder
+    \item These are then transformed and propagated to the next encoder
+    \item The output from the last encoder in the encoder-stack is passed to all the decoders in the decoder-stack as shown in the figure below:
+\end{itemize}  
+
+In addition to the self-attention and feed-forward layers, the decoders also have one more layer of Encoder-Decoder Attention layer. 
+This helps the decoder focus on the appropriate parts of the input sequence.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pictures/Transformer_Model/transformer_working.png}
+    \caption{Transformer Working}\label{fig2:transformer_working}
+\end{figure} 
+
+According to the paper:
+
+“Self-attention, sometimes called intra-attention, is an attention mechanism relating different positions of a single 
+sequence in order to compute a representation of the sequence.”  
+
+\hfill
+
+Consider the following sentence as an input sentence we are feeding into a transformer:
+
+\textbf{”The animal didn't cross the street because it was too tired”}  
+
+\hfill  
+
+What does “it” in this sentence refer to? Is it referring to the street or to the animal? It’s a simple question to a human, 
+but not as simple to an algorithm.
+
+When the model is processing the word “it”, self-attention allows it to associate “it” with “animal”.
+
+As the model processes each word (each position in the input sequence), self attention allows it to look at other positions 
+in the input sequence for clues that can help lead to a better encoding for this word.  
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Pictures/Transformer_Model/self_attention.png}
+    \caption{Self Attention}\label{fig2:self_attention}
+\end{figure}  
+
+
+
+The main intuition behind this method is to compute the relative 
+importance of a ciphertext character with respect to the other 
+ciphertext characters. From our dataset containing encrypted text and the algorithm 
 used for encryption, we create a text prompt from each row for 
 example: 
+
 \begin{flushleft}
     Cipher text: \texttt{ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy}\\
     Algorithm: \texttt{affine}
@@ -410,16 +586,18 @@ it to predict the next. For example, if the model is trained
 with the above prompt and then we supply the following prompt: 
 
 \begin{flushleft}
-    Cipher text: \texttt{ymccaygimgamkyyiycuycqocyeagmigkycmyyoyy}\\
+    Cipher text: \texttt{yycmdkreqluithnalekstndonwothvn}\\
     Algorithm: 
 \end{flushleft}
 
 The model shall generate the output as “affine” which it learned 
 from training. 
 
+\hfill
+
 In our use case, we have used the GPT-Neo (Generative Pre-Trained) model with 125 million parameters to achieve our objective.  It consists of stacks of encoders and decoders put one after the other, of which has been pre-trained on Wikipedia Corpus as well as Common Crawl (This has over 12 Petabytes of data which is 12 years of data uploaded on the internet) datasets for performing extremely well on language-based use cases. Generative, as the word suggests, is for making our code generate text. The architecture is similar to GPT2 except that GPT Neo uses local attention in every other layer with a window size of 256 tokens. All these models are available for free in the Hugging Face transformers library which can be used for a variety of NLP tasks.
 
-\newpage
+\hfill
 
 The following steps were taken for this model:
 \begin{enumerate}
@@ -474,8 +652,6 @@ accuracy improvement after 10 epochs.
 
 Here we can see that as Training Stopped at epoch 16, our best model was in epoch 6 which had a validation accuracy of 61.90\%
 
-\newpage
-
 After some trial and error, we found that the best model 
 we could make by altering the network size, had 2.7 million 
 parameters for the five-class classification and 20.4 million 
@@ -509,8 +685,6 @@ are the sizes for each split:
     \item Validation dataset: 3408 rows
     \item Test dataset: 3407 rows
 \end{itemize}
-
-\newpage
 
 In the beginning, each of our input prompts is converted into 
 tokens using GPT2 tokenizer. 

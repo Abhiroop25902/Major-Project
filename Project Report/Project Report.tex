@@ -213,12 +213,10 @@
 Information is the power in the present day. 
 Information and data should be protected from 
 unauthorized access, distortion, or any 
-unauthorized activity. 
-
-Cryptography is the study of secret writing. Information is 
-no longer hidden due to the existence of network adversaries. 
-Our communication channel is completely unstable; a third 
-party might covertly eavesdrop and obtain information from 
+unauthorized activity. Cryptography is the study of secret writing. 
+Information is no longer hidden due to the existence of network 
+adversaries. Our communication channel is completely unstable; a 
+third party might covertly eavesdrop and obtain information from 
 the network or from the channel. Here, cryptography is crucial 
 in preventing unauthorized access to our data. Using key(s), 
 cryptography converts plaintext messages into unreadable ciphertext 
@@ -240,6 +238,15 @@ on the steps:
     \item   Using the trained model to determine the algorithm 
             that might have been used to generate the cipher text. 
 \end{enumerate}
+
+Our report is organized into seven different sections. This section serves as 
+an introduction, followed by Section 2 that details the preliminaries for this 
+project. Section 3 gives an overview of the papers and tutorials we studied 
+prior to this project.  Section 4 elaborates our proposed work with dataset 
+generation and discussion of the models. Section 5 then presents 
+the experimental findings. The next work that we intend to address in the 
+upcoming semester is contained in Section 6, followed by the conclusion in 
+Section 7.
 
 \section{PRELIMINARIES}
 
@@ -263,7 +270,7 @@ The ML topics that are covered in this project are:
 
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.5\linewidth]{Pictures/Preliminaries/ANN.png}
+        \includegraphics[width=0.4\linewidth]{Pictures/Preliminaries/ANN.png}
         \caption{Artificial Neural Network}\label{fig:ANN}
     \end{figure}
     
@@ -874,17 +881,16 @@ Apart from this, we would like to explore feature detection
 to create a model and compare this approach with the transformer-based 
 model.
 
-Once we are satisfied with the model accuracy on 5 classes of 
-ciphers, we would like to extend the model to detect more classes 
-such as AES, DES, RSA, etc.
+In future work, we would like to extend the number of classes of ciphertext 
+and also increase our dataset to find how our models perform in the new 
+environment. We would like to try a feature-learning approach and also 
+use more transformer models.  We would also like to solve the Cipher ID challenge from Mystery Twister C3  consisting of 500 ciphertexts. Based on our results and improvements, we would like to publish our work in a journal to see how our results stand in global competition. 
 
 \section{CONCLUSION}
 
 This report shows the current progress of our work in the detection of ciphertext using Artificial Neural Networks. Here we used two types of Neural Networks to achieve our objective, namely: Convolution Neural Networks and Transformer approach. 
 
 With the CNN approach, our model was able to achieve an accuracy of 61.90\% for 5 class classifications. We saw a significant improvement with the transformers approach on the same dataset and classes giving an accuracy of 83.24\%. This was primarily due to the higher number of parameters of Gpt-neo and the ability to memorize the local importance of tokens due to the self-attention feature. 
-
-In future work, we would like to extend the number of classes of ciphertext and also increase our dataset to find how our models perform in the new environment. We would like to try a feature-learning approach and also use more transformer models.  We would also like to solve the Cipher ID challenge from Mystery Twister C3  consisting of 500 ciphertexts. Based on our results and improvements, we would like to publish our work in a journal to see how our results stand in global competition. 
 
 \newpage
 \renewcommand{\refname}{REFERENCES}

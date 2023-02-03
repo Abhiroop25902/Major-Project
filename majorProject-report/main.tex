@@ -15,17 +15,25 @@
 \title{DETECTION OF CIPHER TYPES USING ARTIFICIAL NEURAL NETWORKS
 }
 %
-%\titlerunning{Abbreviated paper title}
+\titlerunning{DETECTION OF CIPHER TYPES USING ANN}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Malay Kule et al.\inst{1}}
+% \author{Malay Kule et al.\inst{1}}
+
+\author{Malay Kule\inst{1}\and
+Krishnendu Bera\inst{1}\and
+Abhiroop Mukherjee\inst{1}\and
+Arnab Sen\inst{1}\and
+Swarnali Mondal\inst{1}\and
+Sanjana Chakravarty\inst{1}\and
+Rajdeep Ghosh\inst{1}}
 %
-% \authorrunning{F. Author et al.}
+\authorrunning{Malay Kule et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Indian Institute of Engineering Science and Technology, Shibpur\
+\institute{Indian Institute of Engineering Science and Technology, Shibpur
 \email{malay.kule@gmail.com}\\
 %\url{http://www.springer.com/gp/computer-science/lncs}
 }
@@ -44,11 +52,11 @@ The identification of a cryptosystem has been a challenge for decades. In this p
 \section{Introduction}
 In today's world, information is a powerful tool. However, it is essential to protect information and data from unauthorized access, distortion, or any other unauthorized activity. Cryptography is the study of secret writing and is used to prevent unauthorized access to data. It works by using a key(s) to convert plaintext messages into unreadable ciphertext and vice versa. Encryption is the process of converting plaintext message into an unreadable format to protect sensitive information (called ciphertext), while the inverse process is called decryption. Only authorized users can encrypt or decrypt messages~\cite{katz2020introduction}.
 
-The project's goal is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the cipher text's kind. In this project, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
+The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the cipher text's kind. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
 
 % Preliminaries section
 \section{Preliminaries}
-This project requires basic knowledge of neural networks and deep learning, as well as an overview of the encryption algorithms used. These algorithms can be useful for feature extraction. The main machine-learning topics covered are artificial neural networks (ANN), perceptrons, recurrent neural networks (RNN), convolutional neural networks (CNN), and transformers.
+This paper requires basic knowledge of neural networks and deep learning, as well as an overview of the encryption algorithms used. These algorithms can be useful for feature extraction. The main machine-learning topics covered are artificial neural networks (ANN), perceptrons, recurrent neural networks (RNN), convolutional neural networks (CNN), and transformers.
 
 \begin{itemize}
 
@@ -97,7 +105,7 @@ The dataset has been generated for five types of ciphers:
     \item Rail Fence
 \end{itemize}
 
-The plaintext used for encryption was the texts from Shakespeare’s Hamlet,  Macbeth, Merchant of Venice and Romeo and Juliet.
+The plaintext used for encryption was the texts from Shakespeare’s Hamlet~\cite{2015haml65:online},  Macbeth~\cite{2015macb17:online}, Merchant of Venice~\cite{2015merc44:online} and Romeo and Juliet~\cite{2015rome60:online}.
 
 We converted the text to lowercase and removed all whitespaces and punctuation. Then the plaintext was encrypted and exported as a CSV.
 

@@ -10,6 +10,11 @@
 % If you use the hyperref package, please uncomment the following line
 % to display URLs in blue roman font according to Springer's eBook style:
 \renewcommand\UrlFont{\color{blue}\rmfamily}
+
+% For image caption
+\usepackage{caption}
+\usepackage{subcaption}
+
 \begin{document}
 %
 \title{DETECTION OF CIPHER TYPES USING ARTIFICIAL NEURAL NETWORKS
@@ -125,7 +130,7 @@ So, we first converted every ciphertext into their respective list of tokens usi
 Note that this conversion depends on the length of the string 
 used, i.e.\ for a string for length $n$, we will generate a 
 $n \times n$ matrix. After we generate all variable-sized matrices, 
-we resize them to $60 \times 60$ using Bilinear Interpolation.
+we resize them to $64 \times 64$ using Bilinear Interpolation.
 
 Now we can see that a kernel (say $3 \times 3$ with stride one) 
 can observe its previous as well as its next two characters and can 
@@ -228,7 +233,7 @@ The following are the results obtained:
     \hline
          \bfseries Model & \bfseries Number of Classes & \bfseries Training time & \bfseries Accuracy \\
     \hline
-         CNN & 5 & 6 mins & 59.06\% \\
+         CNN(125M) & 5 & 48 mins & 60.12\% \\
     \hline
          GPT-Neo(125M) & 5 & 37 mins & 83.24\% \\
     \hline
@@ -238,10 +243,29 @@ The following are the results obtained:
     \label{tab:dataset-1}
 \end{table}  
 
+% \begin{figure}
+% \includegraphics[width=0.6\linewidth]{Graphs/accuracy-dataset-1.eps}
+% \includegraphics[width=0.6\linewidth]{Graphs/training-time-dataset-1.eps}
+% \label{fig2}
+% \end{figure}
+
 \begin{figure}
-\includegraphics[width=0.6\linewidth]{Graphs/accuracy-dataset-1.eps}
-\includegraphics[width=0.6\linewidth]{Graphs/training-time-dataset-1.eps}
-\label{fig2}
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/accuracy-dataset-1.eps}
+        \caption{Accuracy}
+        \label{fig2.1:dataset1Accuracy}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/training-time-dataset-1.eps}
+        \caption{Training Time}
+        \label{fig2.2:dataset1TrainaingTime}
+    \end{subfigure}
+       \caption{Comparison of Accuracies and Training Times on Dataset 1}
+       \label{fig2:dataset1Result}
 \end{figure}
 
 \subsection{Dataset-2} 
@@ -264,7 +288,7 @@ The following are the results obtained:
     \hline
          \bfseries Model & \bfseries Number of Classes & \bfseries Training time & \bfseries Accuracy \\
     \hline
-         CNN & 5 &276 mins & 68.30\% \\
+         CNN(125M) & 5 & 5 hrs 10 mins & 69.01\% \\
     \hline
          GPT-Neo(125M) & 5 & 2 hrs 39 mins & 90.61\% \\
     \hline
@@ -274,17 +298,36 @@ The following are the results obtained:
     \label{tab:dataset-2}
 \end{table} 
 
+% \begin{figure}
+% \includegraphics[width=0.6\linewidth]{Graphs/accuracy-dataset-2.eps}
+% \includegraphics[width=0.6\linewidth]{Graphs/training-time-dataset-2.eps}
+% \label{fig2}
+% \end{figure}
+
 \begin{figure}
-\includegraphics[width=0.6\linewidth]{Graphs/accuracy-dataset-2.eps}
-\includegraphics[width=0.6\linewidth]{Graphs/training-time-dataset-2.eps}
-\label{fig2}
+    \centering
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/accuracy-dataset-2.eps}
+        \caption{Accuracy}
+        \label{fig3.1:dataset2Accuracy}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.495\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphs/training-time-dataset-2.eps}
+        \caption{Training Time}
+        \label{fig3.2:dataset2TrainaingTime}
+    \end{subfigure}
+       \caption{Comparison of Accuracies and Training Times on Dataset 2}
+       \label{fig3:dataset2Result}
 \end{figure}
 
 \section{Conclusion}
 
 This paper shows the current progress of our work in the detection of ciphertext using Artificial Neural Networks. Here we used three types of Neural Networks to achieve our objective, namely: Convolution Neural Networks and GPT-Neo and OPT. 
 
-With the CNN approach, our model was able to achieve an accuracy of 68.30\% for 5 class classifications. We saw a significant improvement with the transformers approach using GPT-Neo on the same dataset and classes giving an accuracy of 90.61\%. This was primarily due to the higher number of parameters (125 Million) of GPT-Neo and the ability to memorize the local importance of tokens due to the self-attention feature. OPT gave better improvements, giving an accuracy of 96.72\%, signifying that OPT is better than GPT-Neo for the task of detecting the type of ciphertext.
+With the CNN approach, our model was able to achieve an accuracy of 68.30\% for 5 class classifications. We saw a significant improvement with the transformers approach using GPT-Neo on the same dataset and classes giving an accuracy of 90.61\%. This was primarily due to the ability of GPT-Neo to memorize the local importance of tokens due to the self-attention feature. OPT gave better improvements, giving an accuracy of 96.72\%, signifying that OPT is better than GPT-Neo for the task of detecting the type of ciphertext. We also observed that transformer based models are giving better result than CNN while taking less time for training.
 
 In future work, we will use similar transformer based model like BERT, GPTJ and Bloom to see if those models are better suited for the task. We will also extend the number of classes of ciphertext and size of dataset to see if we observe any improvements.
 

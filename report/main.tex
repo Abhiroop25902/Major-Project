@@ -209,7 +209,25 @@ The following steps were taken for this model:
 
 For our testing purpose, we used various decoding strategies to find the one which gives the best result. Out of the strategies: Greedy Search, Beam Search and Sampling with set temperature, we found sampling  to give the most accurate results of all three. It is a method that is in between the greedy and sampling approach. 
 
-The greedy method selects the next token that has the highest probability as the output while sampling selects one of the possible next tokens randomly. When we set a temperature, the randomness is lowered such that the likelihood of high-probability words is increased and that of the low probability is decreased. We found that a temperature set to 0.7 gave the optimum accuracy on our test data. 10 predictions are computed for each test data and the maximum predicted algorithm is chosen to be the correct one and is then compared with the actual value to compute the accuracy.  
+The greedy method selects the next token that has the highest probability as the output while sampling selects one of the possible next tokens randomly. When we set a temperature, the randomness is lowered such that the likelihood of high-probability words is increased and that of the low probability is decreased. We found that a temperature set to 0.7 gave the optimum accuracy on our test data. 10 predictions are computed for each test data and the maximum predicted algorithm is chosen to be the correct one and is then compared with the actual value to compute the accuracy.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/pre-training.png}
+    \caption{Pre-training}
+    \label{fig2:preTraining}
+    \hfill
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Pictures/fine-tuning.png}
+    \caption{Fine-tuning}
+    \label{fig3:fineTuning}
+    \hfill
+\end{figure}
+
+
 
 \newpage
 \section{Experimental Results}
@@ -253,19 +271,19 @@ The following are the results obtained:
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Graphs/accuracy-dataset-1.eps}
+        \includegraphics[width=\textwidth]{Pictures/Graphs/accuracy-dataset-1.eps}
         \caption{Accuracy}
-        \label{fig2.1:dataset1Accuracy}
+        \label{fig4.1:dataset1Accuracy}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.495\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Graphs/training-time-dataset-1.eps}
+        \includegraphics[width=\textwidth]{Pictures/Graphs/training-time-dataset-1.eps}
         \caption{Training Time}
-        \label{fig2.2:dataset1TrainaingTime}
+        \label{fig4.2:dataset1TrainaingTime}
     \end{subfigure}
        \caption{Comparison of Accuracies and Training Times on Dataset 1}
-       \label{fig2:dataset1Result}
+       \label{fig4:dataset1Result}
 \end{figure}
 
 \subsection{Dataset-2} 
@@ -308,19 +326,19 @@ The following are the results obtained:
     \centering
     \begin{subfigure}[b]{0.495\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Graphs/accuracy-dataset-2.eps}
+        \includegraphics[width=\textwidth]{Pictures/Graphs/accuracy-dataset-2.eps}
         \caption{Accuracy}
-        \label{fig3.1:dataset2Accuracy}
+        \label{fig5.1:dataset2Accuracy}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.495\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{Graphs/training-time-dataset-2.eps}
+        \includegraphics[width=\textwidth]{Pictures/Graphs/training-time-dataset-2.eps}
         \caption{Training Time}
-        \label{fig3.2:dataset2TrainaingTime}
+        \label{fig5.2:dataset2TrainaingTime}
     \end{subfigure}
        \caption{Comparison of Accuracies and Training Times on Dataset 2}
-       \label{fig3:dataset2Result}
+       \label{fig5:dataset2Result}
 \end{figure}
 
 \section{Conclusion}

@@ -57,11 +57,12 @@ The identification of a cryptosystem has been a challenge for decades. In this p
 \section{Introduction}
 In today's world, information is a powerful tool. However, it is essential to protect information and data from unauthorized access, distortion, or any other unauthorized activity. Cryptography is the study of secret writing and is used to prevent unauthorized access to data. It works by using a key(s) to convert plaintext messages into unreadable ciphertext and vice versa. Encryption is the process of converting plaintext message into an unreadable format to protect sensitive information (called ciphertext), while the inverse process is called decryption. Only authorized users can encrypt or decrypt messages~\cite{katz2020introduction}.
 
-The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the cipher text's kind. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
+The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the cipher text's kind. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions were assessed.
 
-Previous studies on detection of the type of ciphers have used ANN, transformer, ensemble model of feature-engineering and BLSTM-GRU cell unit network. In contrast, our study uses the newer version of transformer and OPT model, to do the detection. Our results show that the use of this approach provides more accurate and reliable results compared to the previous ones. Our approach shows an improvement of 14\% compared to ensemble model of feature-engineering~\cite{usingFeatureLearning}, 6\% improvement compared to ANN~\cite{inproceedings} and 1.5\% improvement compared to the BLSTM-GRU network model~\cite{usingLSTM}. 
+Previous studies on detection of the type of ciphers have used ANN, transformer, ensemble model of feature-engineering and BLSTM-GRU cell unit network. In contrast, our study uses the newer version of transformers mainly the GPT and OPT model, to do the detection. Our results show that the use of this approach provides more accurate and reliable results compared to the previous ones. Our approach shows an improvement of 14\% compared to ensemble model of feature-engineering~\cite{usingFeatureLearning}, 6\% improvement compared to ANN~\cite{inproceedings} and 1.5\% improvement compared to the BLSTM-GRU network model~\cite{usingLSTM}. 
 
 This paper is organized in five different sections. Section 2 describes the preliminaries for this work followed by this introductory section. Section 3 elaborates our proposed work with dataset generation and discussion of the models. Section 4 presents the experimental findings. The conclusion and the work that we intend to address in the future is contained in Section 5.
+
 
 % Preliminaries section
 \section{Preliminaries}
@@ -184,18 +185,9 @@ with the above prompt and then we supply the following prompt:
 The model may generate the output as “affine” which it learned 
 from training. 
 
-In our use case, we have used the GPT-Neo (Generative Pre-Trained)~\cite{GPTNeo70:online}, 
-a model with 125 million parameters to achieve our objective.  
-It consists of a set of encoders and decoders placed one after 
-the other. It has been pre-trained on Wikipedia Corpus ~\cite{EnglishC48:online}
-and Common Crawl~\cite{CommonCr20:online} (This includes 12 years of data uploaded on the internet and has a size of over 12 Petabytes).
-The word "Generative" suggests that the model is capable of text generation. The architecture is an extension to GPT2~\cite{radford2019language}. GPT-Neo~\cite{GPTNeo70:online} 
-uses local attention in every other layer with a window size 
-of 256 tokens. All these models are available for free in the 
-Hugging Face \cite{HuggingF50:online} transformers library which can be used for a 
-variety of NLP tasks.  
+In our use case, we have used the GPT-Neo (Generative Pre-Trained)~\cite{GPTNeo70:online} and OPT ~\cite{OPT:online} models both with 125 million parameters to achieve our objective. GPT-Neo has been pre-trained on the Pile ~\cite{pile} dataset created by EleutherAI, whereas the OPT was trained on the Pile ~\cite{pile} as well as The Pushshift Reddit Dataset ~\cite{pushshift}. The GPT-Neo architecture is an extension to GPT2~\cite{radford2019language} using local attention in every other layer with a window size of 256 tokens. On the other hand, the OPT's design is based on the latest GPT-3 ~\cite{gpt3} and both OPT and GPT-3 have a comparale performance. All these models are available for free in the Hugging Face \cite{HuggingF50:online} transformers library which can be used for a variety of NLP tasks.  
 
-The following steps were taken for this model:
+The following steps were performed:
 \begin{enumerate}
     \item   Each data is converted into text prompts 
             that is passed through a tokenizer that creates embedding 
@@ -211,7 +203,7 @@ The following steps were taken for this model:
     \item   After fine-tuning, for each of our test data we performed sampling with the temperature set to 0.7 to return 10 predictions. The maximum predicted algorithm is chosen to be the correct one and is then compared with the actual value to compute the accuracy.
 \end{enumerate}  
 
-For our testing purpose, we used various decoding strategies to find the one which gives the best result. Out of the strategies: Greedy Search, Beam Search and Sampling with set temperature, we found sampling  to give the most accurate results of all three. It is a method that is in between the greedy and sampling approach. 
+For our testing purpose, we used various decoding strategies to find the one which gives the best result. Out of the strategies: Greedy Search, Beam Search and Sampling with set temperature, we found sampling to give the most accurate results of all three. 
 
 The greedy method selects the next token that has the highest probability as the output while sampling selects one of the possible next tokens randomly. When we set a temperature, the randomness is lowered such that the likelihood of high-probability words is increased and that of the low probability is decreased. We found that a temperature set to 0.7 gave the optimum accuracy on our test data. 10 predictions are computed for each test data and the maximum predicted algorithm is chosen to be the correct one and is then compared with the actual value to compute the accuracy.
 

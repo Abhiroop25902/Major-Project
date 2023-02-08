@@ -24,22 +24,22 @@
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-% \author{Malay Kule et al.\inst{1}}
+\author{}
 
-\author{Malay Kule\inst{1}\and
-Krishnendu Bera\inst{1}\and
-Abhiroop Mukherjee\inst{1}\and
-Arnab Sen\inst{1}\and
-Swarnali Mondal\inst{1}\and
-Sanjana Chakravarty\inst{1}\and
-Rajdeep Ghosh\inst{1}}
+% \author{Malay Kule\inst{1}\and
+% Krishnendu Bera\inst{1}\and
+% Abhiroop Mukherjee\inst{1}\and
+% Arnab Sen\inst{1}\and
+% Swarnali Mondal\inst{1}\and
+% Sanjana Chakravarty\inst{1}\and
+% Rajdeep Ghosh\inst{1}}
 %
-\authorrunning{Malay Kule et al.}
+% \authorrunning{Malay Kule et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
-\institute{Indian Institute of Engineering Science and Technology, Shibpur
-\email{malay.kule@gmail.com}\\
+\institute{}
+% \email{malay.kule@gmail.com}\\
 %\url{http://www.springer.com/gp/computer-science/lncs}
 }
 %
@@ -57,7 +57,7 @@ The identification of a cryptosystem has been a challenge for decades. In this p
 \section{Introduction}
 In today's world, information is a powerful tool. However, it is essential to protect information and data from unauthorized access, distortion, or any other unauthorized activity. Cryptography is the study of secret writing and is used to prevent unauthorized access to data. It works by using a key(s) to convert plaintext messages into unreadable ciphertext and vice versa. Encryption is the process of converting plaintext messages into an unreadable format to protect sensitive information (called ciphertext), while the inverse process is called decryption. Only authorized users can encrypt or decrypt messages~\cite{katz2020introduction}.
 
-The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the cipher text's kind. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
+The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the type of cipher text. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
 
 Previous studies on the detection of the type of ciphers have used ANN, transformer, ensemble model of feature-engineering, and BLSTM-GRU cell unit network. In contrast, our study uses the newer version of transformers mainly the GPT and OPT models, to do the detection. Our results show that the use of this approach provides more accurate and reliable results compared to the previous ones. Our approach shows an improvement of 14\% compared to them ensemble model of feature-engineering~\cite{usingFeatureLearning}, 6\% improvement compared to ANN~\cite{inproceedings} and 1.5\% improvement compared to the BLSTM-GRU network model~\cite{usingLSTM}. 
 
@@ -210,20 +210,22 @@ The greedy method selects the next token that has the highest probability as the
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{Pictures/pre-training.png}
-    \caption{Pre-training}
+    \caption{Pre-training of a transformer model on a large corpus}
     \label{fig2:preTraining}
     \hfill
 \end{figure}
 
+Fig. 2 depicts the pre-training phase of a Transformer-based architecture. Upon completion of this phase, the model has acquired the capability of generating generic text. As an illustration, it can predict the continuation of the phrase \"two plus two\" as \"equals four\".
+
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{Pictures/fine-tuning.png}
-    \caption{Fine-tuning}
+    \caption{Fine-tuning of the pre-trained transformer model on a custom dataset}
     \label{fig3:fineTuning}
     \hfill
 \end{figure}
 
-
+Fig. 3 represents the pre-trained Transformer-based model that has undergone fine-tuning utilizing a custom dataset derived from several works of Shakespeare. The fine-tuned model is now capable of being applied to the specific task of identifying the cipher type of a given ciphertext.
 
 \newpage
 \section{Experimental Results}
@@ -238,7 +240,7 @@ Our initial dataset consisted of 34075 rows that were split for training, testin
     \item Test dataset: 3407 rows
 \end{itemize}  
 
-The following are the results obtained: 
+Table 1 shows the results obtained using the dataset-1 where GPT and OPT models are giving much better accuracy than CNN.
 
 \begin{table}[h!]
     \centering
@@ -293,7 +295,7 @@ Next, we increased our dataset containing  133880 rows that were split for train
     \item Test dataset: 13388 rows
 \end{itemize}  
 
-The following are the results obtained: 
+Table 2 shows the results obtained using dataset-2:
 
 \begin{table}[h!]
     \centering
@@ -336,6 +338,8 @@ The following are the results obtained:
        \caption{Comparison of Accuracies and Training Times on Dataset 2}
        \label{fig5:dataset2Result}
 \end{figure}
+
+Fig. 5 shows that the results obtained using OPT and GPT models are far better than other models based on LSTM, RNN, CNN, SVM, Decision Tree, etc.
 
 \section{Conclusion}
 

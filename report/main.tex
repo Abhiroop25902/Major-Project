@@ -33,7 +33,7 @@
 % Swarnali Mondal\inst{1}\and
 % Sanjana Chakravarty\inst{1}\and
 % Rajdeep Ghosh\inst{1}}
-%
+%list in
 % \authorrunning{Malay Kule et al.}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
@@ -41,7 +41,7 @@
 \institute{}
 % \email{malay.kule@gmail.com}\\
 %\url{http://www.springer.com/gp/computer-science/lncs}
-}
+% }
 %
 \maketitle              % typeset the header of the contribution
 %
@@ -59,9 +59,9 @@ In today's world, information is a powerful tool. However, it is essential to pr
 
 The goal of the work is to use artificial neural networks to examine encrypted text files and classify them based on their cipher types. The process involves creating a collection of cipher texts with various cipher types, building a Deep Neural Network (DNN), and training it with a variety of cipher texts and training parameters to enable accurate learning and cipher text classification~\cite{inproceedings}. Once the DNN is trained, it can be used to determine the type of cipher text. In this work, the Caesar, Affine, Vigenère, Substitution, and Rail Fence ciphers were used to encrypt English texts. The encrypted files were then submitted to CNN and Transformer models, which made predictions, and the accuracy of these predictions was assessed.
 
-Previous studies on the detection of the type of ciphers have used ANN, transformer, ensemble model of feature-engineering, and BLSTM-GRU cell unit network. In contrast, our study uses the newer version of transformers mainly the GPT and OPT models, to do the detection. Our results show that the use of this approach provides more accurate and reliable results compared to the previous ones. Our approach shows an improvement of 14\% compared to them ensemble model of feature-engineering~\cite{usingFeatureLearning}, 6\% improvement compared to ANN~\cite{inproceedings} and 1.5\% improvement compared to the BLSTM-GRU network model~\cite{usingLSTM}. 
+Previous studies on the detection of the type of ciphers have used ANN, transformer, ensemble model of feature-engineering, and BLSTM-GRU cell unit network. The research which explored the use of Long Short-Term Memory (LSTM) and Transformer algorithms as feature-learning algorithms for the task of identifying 55 classical cipher types reported that with an ensemble model combining feature-engineering and feature-learning neural network types, they achieved an accuracy of 82.78\% over a dataset of 10 million ciphertexts. One more work presented the progress of a research project that uses a TensorFlow-based network for detecting the cipher type. The network in this case was able to classify about 90\% of the ciphertexts in a publicly available challenge correctly, and that their method resulted in a saving of about 54\% computation time compared to using different solvers. Another study based on deep Bidirectional LSTM-Gated Recurrent Units (GRU) for ciphertext classification evaluated the model on two publicly available datasets and reported a high classification accuracy of 95.8\%. In contrast, our study uses the newer version of transformers mainly the GPT and OPT models, to do the detection. Our results show that the use of this approach provides more accurate and reliable results compared to the previous ones. Our approach shows an improvement of 14\% compared to them ensemble model of feature-engineering~\cite{usingFeatureLearning}, 6\% improvement compared to ANN~\cite{inproceedings} and 1.5\% improvement compared to the BLSTM-GRU network model~\cite{usingLSTM}. It is important to note that our results not only show the potential of these models but also highlight the possibility of even better performance if the limitations of resources and computation time are addressed.  
 
-This paper is organized into five different sections. Section 2 describes the preliminaries for this work followed by this introductory section. Section 3 elaborates on our proposed work with dataset generation and a discussion of the models. Section 4 presents the experimental findings. Section 5 contains the conclusion and the work that we plan to address in the future.
+This paper is organized into five different sections. Section 2 describes the preliminaries for this work followed by this introductory section. Section 3 elaborates on our proposed work with dataset generation and a discussion of the models. Section 4 shows the experimental findings. Section 5 contains the conclusion and the work that we plan to address in the future.
 
 
 % Preliminaries section
@@ -90,9 +90,7 @@ This paper requires basic knowledge of neural networks and deep learning, as wel
     
 \item \textbf{Transformers} – The transformer is a type of encoder-decoder model, which is commonly used 
     for tasks such as machine translation and text summarization~\cite{vaswani2017attention}. 
-    The key innovation of the transformer is the use of self-attention, 
-    a mechanism that allows the model to learn dependencies 
-    between different words in the input sentence. This allows 
+    The use of self-attention, a mechanism that enables the model to learn relationships between different words in the input text, is the transformer's key innovation. This allows 
     the transformer to process the input sentence in parallel, 
     rather than in a sequential manner, which makes it much 
     more efficient and scalable than previous NLP models.
@@ -124,7 +122,7 @@ We converted the text to lowercase and removed all whitespaces and punctuation. 
 The main intuition behind this method is that CNN uses its kernel as a “local receptive field”~\cite{DBLP:journals/corr/OSheaN15}, which means that a CNN kernel (small in size as we are dealing with stream cipher and not block cipher) can look its nearby characters and will find some pattern in the ciphertext.  
 \
 
-So, we first converted every ciphertext into their respective list of tokens using a  TextVectorizer~\cite{tfkerasl36:online}, and then we converted that list into an image (see Fig.~\ref{fig:convert_text_img}).
+So, we first converted every ciphertext into their respective list of tokens using a  TextVectorizer~\cite{tfkerasl36:online}, and then we converted that list into an image as shown in Fig.~\ref{fig:convert_text_img}.
 
 \begin{figure}[h!]
     \centering
@@ -158,8 +156,7 @@ In summary, we have used the transformer model as it is a state-of-the-art model
 \subsection{Transformer Based Proposed Model}  
 
 The Transformer in NLP is a novel architecture that aims to 
-solve sequence-to-sequence tasks while handling long-range dependencies 
-with ease. The Transformer was proposed in the paper Attention 
+solve sequence-to-sequence tasks while effeciently handling long-range dependencies. The Transformer was proposed in the paper Attention 
 Is All You Need~\cite{vaswani2017attention}. The main intuition behind this method is to compute the relative 
 importance of a ciphertext character with respect to the other 
 ciphertext characters. 
@@ -174,8 +171,7 @@ prompt from each row for example:
 \end{flushleft}  
 
 The model learns the relative importance of each token (character) and uses 
-it to predict the type of ciphertext. For example, if the model is trained 
-with the above prompt and then we supply the following prompt: 
+it to predict the type of ciphertext. For instance, if the model is trained using the previous prompt and we then provide the following prompt:
 
 \begin{flushleft}
     Cipher text: \texttt{yycmdkreqluithnalekstndonwothvn}\\
@@ -185,7 +181,7 @@ with the above prompt and then we supply the following prompt:
 The model may generate the output as “affine” which it learned 
 from training. 
 
-In our use case, we have used the GPT-Neo (Generative Pre-Trained)~\cite{GPTNeo70:online} and OPT ~\cite{OPT:online} models both with 125 million parameters to achieve our objective. GPT-Neo has been pre-trained on the Pile ~\cite{pile} dataset created by EleutherAI, whereas the OPT was trained on the Pile ~\cite{pile} as well as The Pushshift Reddit Dataset ~\cite{pushshift}. The GPT-Neo architecture is an extension to GPT2~\cite{radford2019language} using local attention in every other layer with a window size of 256 tokens. On the other hand, the OPT's design is based on the latest GPT-3 ~\cite{gpt3} and both OPT and GPT-3 have a comparale performance. All these models are available for free in the Hugging Face \cite{HuggingF50:online} transformers library which can be used for a variety of NLP tasks.  
+In our use case, we have used the GPT-Neo (Generative Pre-Trained)~\cite{GPTNeo70:online} and OPT ~\cite{OPT:online} models both with 125 million parameters to achieve our objective. GPT-Neo has been pre-trained on the Pile ~\cite{pile} dataset created by EleutherAI, whereas the OPT was trained on the Pile ~\cite{pile} as well as The Pushshift Reddit Dataset ~\cite{pushshift}. The GPT-Neo architecture is an extension to GPT2~\cite{radford2019language} using local attention in every other layer with a window size of 256 tokens. On the other hand, the OPT's design is based on the latest GPT-3 ~\cite{gpt3} and both OPT and GPT-3 have a comparale performance. All these models are available for free in the Hugging Face \cite{HuggingF50:online} transformers library which can be used for a number of NLP tasks.  
 
 The following steps were performed:
 \begin{enumerate}
@@ -339,15 +335,15 @@ Table 2 shows the results obtained using dataset-2:
        \label{fig5:dataset2Result}
 \end{figure}
 
-Fig. 5 shows that the results obtained using OPT and GPT models are far better than other models based on LSTM, RNN, CNN, SVM, Decision Tree, etc.
+Fig. 5 shows that the results obtained using OPT and GPT models are far better than other models based on CNN.
 
 \section{Conclusion}
 
-This paper shows the current progress of our work in the detection of ciphertext using Artificial Neural Networks. Here we used three types of Neural Networks to achieve our objective, namely: Convolution Neural Networks, GPT-Neo, and OPT. 
+This paper illustrates the current progress of our work in the detection of ciphertext using Artificial Neural Networks. Here we used three types of Neural Networks to achieve our objective, namely: Convolution Neural Networks, GPT-Neo, and OPT. 
 
 With the CNN approach, our model was able to achieve an accuracy of 68.30\% for 5 class classifications. We saw a significant improvement with the transformers approach using GPT-Neo on the same dataset and classes giving an accuracy of 90.61\%. This was primarily due to the ability of GPT-Neo to memorize the local importance of tokens due to the self-attention feature. OPT gave better improvements, giving an accuracy of 96.72\%, signifying that OPT is better than GPT-Neo for the task of detecting the type of ciphertext. We also observed that transformer-based models are giving better results than CNN while taking less time for training.
 
-In future work, we will use s similar transformer-based model like BERT, GPTJ, and Bloom to see if those models are better suited for the task. We will also extend the number of classes of ciphertext and the size of the dataset to see if we observe any improvements.
+Our work can further be extended using similar transformer-based model like BERT, GPTJ, and Bloom to see if those models are better suited for the task. We will also increase the number of classes of ciphertext and the size of the dataset to see if we observe any improvements.
 
 % ---- Extras ----
 
